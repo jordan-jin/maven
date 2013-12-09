@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+       
+	<!-- Spring MVC에서 Annotation 으로 Parameter 연결 -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="customArgumentResolver" ref="eDataArgumentResolver"/>
+		
+		<!-- Controller @Responsebody 어노테이션 사용시 한글 깨짐 방지 -->
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/plain;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>		
+	</bean>
+	
+	<!-- Request Parameter 값들을 EData 객체로 bind하는 resolver -->
+	<!-- AnnotationMethodHandlerAdapter Property 값에 세팅한다. -->
+	<bean id="eDataArgumentResolver" class="pporan.maven.framework.spring.EDataArgumentResolver"/>
+	 
+	<!-- Convention over Configuration 기반 View Name Translator DispatcherServlet -->
+	<!-- 기본 설정 이기에 명시하지 않아도 된다
+	<bean class="org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator" />
+	 -->
+	 
+	<!-- Controller 에서 CoC 기능 사용
+	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
+	 -->
+	
+	<!-- Annotation 을 사용하지 않는 별개 Controller 처리 -->
+	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+	
+	<!-- View Name Mapper
+	<bean id="viewNameTranslator" class="org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator"/>
+	 -->
+	
+	<!-- Controller 를 찾을 Base Package 명 -->
+	<context:component-scan base-package="pporan.maven.project.controller" />
+
+	<!-- component-scan 이용시 annotation-config 제외 가능  -->
+	<context:annotation-config />
+	 
+	<!-- JSP 를 찾을 위치. -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+</beans>

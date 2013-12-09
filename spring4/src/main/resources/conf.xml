@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<module id="delimiter">
+		<property id="row">^</property>
+		<property id="column">//</property>		
+	</module>
+	<module id="admin_level">
+		<property id="super">A01,B01,C01,D01</property>
+		<property id="cs">A01,B01,C01,D01</property>
+		<property id="logistics">A01,B01,C01,D01</property>
+		<property id="business">A01,B01,C01,D01</property>
+		<property id="pr">A01,B01,C01,D01</property>
+		<property id="marketing">A01,B01,C01,D01</property>
+	</module>
+	<module id="pageRowSize">
+		<property id="isAdminRow">10</property>
+		<property id="isAdminBlock">10</property>
+		<property id="repAdminRow">10</property>
+		<property id="repAdminBlock">10</property>
+		
+		<!-- 지식Plus  -->
+		<property id="knowAdminRow">10</property>
+		<property id="knowAdminBlock">10</property>
+		
+		<!-- 상품 -->
+		<property id="productAdminRow">10</property>
+		<property id="productAdminBlock">10</property>
+		
+		<!-- 상품 추천상품, 베스트셀러 TOP -->
+		<property id="productTopAdminRow">20</property>
+		<property id="productTopAdminBlock">5</property>
+		
+		<!-- 추천메뉴(음식) -->
+		<property id="recomMenuAdminRow">20</property>
+		<property id="recomMenuAdminBlock">5</property>
+		
+		<!-- 식재시황 -->
+		<property id="marketCdtAdminRow">20</property>
+		<property id="marketCdtAdminBlock">5</property>
+	</module>
+	
+	<module id="address_table">
+		<property id="11">ADDR_SEOUL</property>
+		<property id="26">ADDR_BUSAN</property>
+		<property id="27">ADDR_DAEGU</property>
+		<property id="28">ADDR_INCHEON</property>
+		<property id="29">ADDR_GWANGJU</property>
+		<property id="30">ADDR_DAEJEON</property>
+		<property id="31">ADDR_ULSAN</property>
+		<property id="36">ADDR_SEJONG</property>
+		<property id="41">ADDR_GYEONGGI</property>
+		<property id="42">ADDR_GANGWON</property>
+		<property id="43">ADDR_CHUNGBUK</property>
+		<property id="44">ADDR_CHUNGNAM</property>
+		<property id="45">ADDR_JEONBUK</property>
+		<property id="46">ADDR_JEONNAM</property>
+		<property id="47">ADDR_GYEONGBUK</property>
+		<property id="48">ADDR_GYEONGNAM</property>
+		<property id="50">ADDR_JEJU</property>
+	</module>	
+	
+	<module id="table_gubun">
+		<property id="comment">BOARD_COMMENT</property>
+		<property id="cmBoard">BOARD</property>
+		<property id="recComment">RECMENU_COMMENT</property>
+		<property id="consult">CONSULT</property>
+	</module>	
+	
+	<!-- 급식, 외식 등 타입 구분 값 -->
+	<module id="type_gubun">
+		<property id="type_b">1</property><!-- 급식 -->
+		<property id="type_p">2</property><!-- 외식 -->
+	</module>
+	
+	<!-- 카테고리 설정값 -->
+	<module id="categoryEnv">
+		<!-- 하위카테고리 타입 -->
+		<property id="childType_normal">1</property> 	<!-- 일반 타입(단일 선택 (selecbox ...)) -->
+		<property id="childType_attr">2</property> 		<!-- 속성 타입(단중 선택 (checkbox ...)) -->
+		<!-- //하위카테고리 타입 -->
+	</module>
+	
+	<!-- 카테고리 코드 -->
+	<module id="categoryCode">
+		<property id="knowRootCateCd">R000001</property><!-- 지식Plus 카테고리 코드 값 -->
+
+		<!-- 상품 카테고리 코드 관련 -->
+		<property id="productRootCateCd">R000002</property><!-- 상품 ROOT 카테고리 코드 값 -->
+		
+		<property id="product_brandCateCd">R000006</property><!-- 브랜드 상품 카테고리 코드 값 -->
+		<property id="product_normalCateCd">R000007</property><!-- 일반 상품 카테고리 코드 값 -->
+		<!-- //상품 카테고리 코드 관련 -->
+		
+		<property id="recomMenuRootCateCd">R000003</property><!-- 추천메뉴,레시피 카테고리 코드 값 -->
+		<property id="foodCalendarRootCateCd">R000022</property><!-- 아워홈추천식단 카테고리 코드 값 -->
+		
+		<property id="b_C1RootCateCd">R000014</property><!-- 식재거래상담-급식 카테고리 코드 값 -->
+		<property id="p_C1RootCateCd">R000015</property><!-- 식재거래상담-외식 카테고리 코드 값 -->
+		<property id="eduDataRootCateCd">R000016</property><!-- 토탈솔루션-월별교육자료 카테고리 코드 값 -->
+		<property id="recruitRootCateCd">R000017</property><!-- 토탈솔루션-구인구직 카테고리 코드 값 -->
+		<property id="recruitWorkCateCd">C000190</property><!-- 토탈솔루션-구인구직-담당업무 카테고리 코드 값 -->
+		<property id="C4RootCateCd">R000018</property><!-- 1:1상담 카테고리 코드 값 -->
+		<property id="myRecipeRootCateCd">R000019</property><!-- 급식레시피자랑 카테고리 코드 값 -->
+		<property id="iamChefRootCateCd">R000020</property><!-- 아임어쉐프 카테고리 코드 값 -->
+		<property id="myMealRootCateCd">R000021</property><!-- 내가작성한식단 카테고리 코드 값 -->
+		<property id="eventShareRootCateCd">R000023</property><!-- 이벤트뽐내기 카테고리 코드 값 -->
+	</module>
+	
+	<!-- 파일 업로드 -->
+	<module id="fileUpload">
+		<!-- 팝업 -->
+		<property id="popupFileLimitSize">5242880</property><!-- 업로드 최대 크기 -->
+		<property id="popupUploadFolder">popup</property><!-- 업로드 폴더 -->
+		
+		<!-- 카테고리 -->
+		<property id="cateFileLimitSize">5242880</property><!-- 업로드 최대 크기 -->
+		<property id="cateUploadFolder">category</property><!-- 업로드 폴더 -->
+		
+		<!-- 지식Plus -->
+		<property id="knowFileLimitSize">10485760</property><!-- 업로드 최대 크기 -->
+		<property id="knowUploadFolder">know</property><!-- 업로드 폴더 -->
+		
+		<!-- 상품 -->
+		<property id="productFileLimitSize">5242880</property><!-- 업로드 최대 크기 -->
+		<property id="productUploadFolder">product</property><!-- 업로드 폴더 -->
+		
+		<!-- 추천메뉴(음식) -->
+		<property id="recomMenuFileLimitSize">5242880</property><!-- 업로드 최대 크기 -->
+		<property id="recomMenuUploadFolder">recom_menu</property><!-- 업로드 폴더 -->
+		
+		<!-- 추천식단 -->
+		<property id="foodCalendarFileLimitSize">5242880</property><!-- 업로드 최대 크기 -->
+		<property id="foodCalendarUploadFolder">food_calendar</property><!-- 업로드 폴더 -->
+		
+		<!-- 공동구매 -->
+		<property id="groupPurchaseFileLimitSize">5242880</property><!-- 업로드 최대 크기 -->
+		<property id="groupPurchaseloadFolder">group_purchase</property><!-- 업로드 폴더 -->		
+
+		<!-- 고객접수내역 -->
+		<property id="receiptFileLimitSize">5242880</property><!-- 업로드 최대 크기 -->
+		<property id="receiptPurchaseloadFolder">receipt</property><!-- 업로드 폴더 -->
+				
+		<!-- 상품top10 -->
+		<property id="productTopFileLimitSize">5242880</property><!-- 업로드 최대 크기 -->
+		<property id="productTopUploadFolder">prd_top</property><!-- 업로드 폴더 -->		
+	</module>
+	
+	<!-- ITEM (연관 상품, 음식, 시황상품) 타입 값 -->
+	<module id="itemRelation">
+		<property id="type_product">1</property><!-- 상품 타입 값 -->
+		<property id="type_recomMenu">2</property><!-- 음식(메뉴)/레시피 타입 값 -->
+		<property id="type_market">3</property><!-- 시황상품 타입 값 -->
+	</module>
+	
+	<!-- 게시판구분 값 -->
+	<module id="commonBoard_gubun">
+		<property id="c_product">C000</property><!-- 공통:상품 -->
+		<property id="b_recomMenu">B000</property><!-- 급식:추천메뉴/레시피 -->
+		<property id="b_recomMenu_comment">B000C</property><!-- 급식:추천메뉴/레시피 댓글 -->
+		<property id="k_knowDict">K001</property><!-- 지식PLUS 오픈백과 -->
+		<property id="k_knowQna">K002</property><!-- 지식PLUS QNA -->
+		<property id="k_knowReply">K003</property><!-- 지식PLUS 답변 -->
+		<property id="b_product_top">B010</property><!-- 급식, 외식:추천 TOP10 -->
+		<property id="b_product_top_comment">B010C</property><!-- 급식, 외식:추천 TOP10 댓글 -->
+		
+		<!-- 공통 게시판 영역 -->
+		<property id="b_talk">B001</property><!-- 급식:소근소근 -->
+		<property id="b_talk_comment">B001C</property><!-- 급식:소근소근 댓글 -->
+		
+		<property id="b_recipe">B002</property><!-- 급식:급식레시피자랑 -->
+		<property id="b_recipe_comment">B002C</property><!-- 급식:급식레시피자랑 댓글 -->
+		
+		<property id="b_event">B003</property><!-- 급식:이벤트뽐내기 -->
+		<property id="b_event_comment">B003C</property><!-- 급식:이벤트뽐내기 댓글 -->
+		
+		<property id="b_myMeal">B004</property><!-- 급식:내가작성한식단 -->
+		<property id="b_myMeal_comment">B004C</property><!-- 급식:내가작성한식단 댓글 -->
+		
+		<property id="p_talk">P001</property><!-- 외식:쉐프톡 -->
+		<property id="p_talk_comment">P001C</property><!-- 외식:쉐프톡 댓글 -->
+		
+		<property id="p_recipe">P003</property><!-- 외식:아임어쉐프 -->
+		<property id="p_recipe_comment">P003C</property><!-- 외식:아임어쉐프 댓글 -->
+		
+		<property id="i_infra_I004">I004</property><!-- 아워홈인프라:이벤트 -->
+		<property id="i_infra_I004_comment">I004C</property><!-- 아워홈인프라:이벤트 댓글 -->
+		
+		<property id="t_usedMarket">T006</property><!-- 토탈솔루션:중고장터 -->
+		<property id="t_usedMarket_comment">T006C</property><!-- 토탈솔루션:중고장터 댓글 -->
+		
+		<property id="c_delicious">C001</property><!-- 공통:리얼리티맛집평가 -->
+		<property id="c_trend">C002</property><!-- 공통:국내외트렌드리포트 -->		
+		<property id="p_chef_info">P002</property><!-- 외식:스타쉐프레시피_쉐프관리 -->
+		<property id="p_cost">P004</property><!-- 외식:Cost절감을 위한 제안 -->
+		<property id="p_recom_product">P005</property><!-- 외식:추천상품 -->
+		<property id="t_edu_data">T004</property><!-- 토탈솔루션:월별교육자료 -->
+		<property id="t_pop_print">T005</property><!-- 토탈솔루션:주제별POP -->
+		<property id="t_recruit">T007</property><!-- 토탈솔루션:구인구직 -->
+		<property id="t_vod_lecture">T008</property><!-- 토탈솔루션:동영상강의 -->
+	</module>
+	<!-- 게시판파일업로드 경로 -->
+	<module id="commonBoard_file">
+		<property id="c_delicious">delicious</property><!-- 공통:리얼리티맛집평가 -->
+		<property id="c_trend">trend</property><!-- 공통:국내외트렌드리포트 -->
+		<property id="b_talk">talk</property><!-- 급식:소근소근 -->
+		<property id="b_event">event_share</property><!-- 급식:이벤트뽐내기 -->	
+		<property id="b_recipe">my_recipe</property><!-- 급식:급식레시피자랑 -->
+		<property id="b_myMeal">my_meal</property><!-- 급식:내가작성한식단 -->
+		<property id="p_talk">chef_talk</property><!-- 외식:쉐프톡 -->
+		<property id="p_chef_info">chef_info</property><!-- 외식:스타쉐프레시피_쉐프관리 -->
+		<property id="p_chef_recipe">chef_recipe</property><!-- 외식:스타쉐프레시피_레시피관리 -->
+		<property id="p_recipe">iam_chef</property><!-- 외식:아임어쉐프 -->
+		<property id="p_cost">cost</property><!-- 외식:Cost절감을 위한 제안 -->
+		<property id="p_recom_product">recom_product</property><!-- 외식:추천상품 -->
+		<property id="t_lawIsuue_T001">lawIssue/law</property><!-- 토탈솔루션:법규가이드 -->
+		<property id="t_lawIsuue_T002">lawIssue/food</property><!-- 토탈솔루션:푸드인사이드 -->
+		<property id="t_lawIsuue_T003">lawIssue/issue</property><!-- 토탈솔루션:클릭핫이슈 -->
+		<property id="t_edu_data">edu_data</property><!-- 토탈솔루션:월별교육자료 -->
+		<property id="t_pop_print">pop_print</property><!-- 토탈솔루션:주제별POP -->
+		<property id="i_infra_I001">infra/news</property><!-- 아워홈인프라:아워홈소식 -->
+		<property id="i_infra_I002">infra/notice</property><!-- 아워홈인프라:공지사항 -->
+		<property id="i_infra_I003">infra/faq</property><!-- 아워홈인프라:자주묻는질문 -->
+		<property id="i_infra_I004">infra/event</property><!-- 아워홈인프라:이벤트 -->
+		<property id="t_recruit">recruit</property><!-- 토탈솔루션:구인구직 -->
+		<property id="t_vod_lecture">vod_lecture</property><!-- 토탈솔루션:동영상강의 -->
+	</module>
+	
+	<module id="productEnv">
+		<property id="typeCode_brand">B</property>
+		<property id="typeCode_normal">N</property>
+	</module>
+</configuration>

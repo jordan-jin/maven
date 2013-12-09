@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	<context:annotation-config />
+
+	<tx:annotation-driven transaction-manager="txManager_etribe"/>
+
+	<!-- 외부 설정 파일 위치 -->
+	<!-- 
+	<context:property-placeholder location="classpath:conf/db.properties" />
+	<bean id="dataSource_etribe" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="user" value="${jdbc.etribe.username}" />
+		<property name="password" value="${jdbc.etribe.password}" />
+		<property name="driverClass" value="${jdbc.etribe.driverClassName}" />
+		<property name="jdbcUrl" value="${jdbc.etribe.url}" />
+		<property name="initialPoolSize" value="${jdbc.etribe.initialPoolSize}" />
+		<property name="maxPoolSize" value="${jdbc.etribe.maxPoolSize}" />
+		<property name="minPoolSize" value="${jdbc.etribe.minPoolSize}" />
+		<property name="acquireIncrement" value="${jdbc.etribe.acquireIncrement}" />
+		<property name="acquireRetryAttempts" value="${jdbc.etribe.acquireRetryAttempts}" />
+		<property name="autoCommitOnClose" value="${jdbc.etribe.autoCommitOnClose}" />
+	</bean>
+	<bean id="txManager_etribe" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource_etribe"></property>
+	</bean>
+	<bean id="sqlMapClient_etribe" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:mybatis/sql-map-config.xml" />
+		<property name="mapperLocations" value="classpath:mybatis/sqlmaps/*.xml" />
+		<property name="dataSource" ref="dataSource_etribe" />
+	</bean>
+	<bean id="oracleCommonDao" class="kr.co.etribe.framework.db.SqlMapCommonDao">
+		<property name="sqlSessionFactory" ref="sqlMapClient_etribe"/>
+	</bean>
+	 -->
+	<!-- 
+	<tx:annotation-driven transaction-manager="txManager_mysql"/>
+	<bean id="dataSource_mysql" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="user" value="${jdbc.pporan.mysql.username}" />
+		<property name="password" value="${jdbc.pporan.mysql.password}" />
+		<property name="driverClass" value="${jdbc.pporan.mysql.driverClassName}" />
+		<property name="jdbcUrl" value="${jdbc.pporan.mysql.url}" />
+		<property name="initialPoolSize" value="${jdbc.pporan.mysql.initialPoolSize}" />
+		<property name="maxPoolSize" value="${jdbc.pporan.mysql.maxPoolSize}" />
+		<property name="minPoolSize" value="${jdbc.pporan.mysql.minPoolSize}" />
+		<property name="acquireIncrement" value="${jdbc.pporan.mysql.acquireIncrement}" />
+		<property name="acquireRetryAttempts" value="${jdbc.pporan.mysql.acquireRetryAttempts}" />
+		<property name="autoCommitOnClose" value="${jdbc.pporan.mysql.autoCommitOnClose}" />
+	</bean>
+	<bean id="txManager_mysql" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource_mysql"></property>
+	</bean>
+	<bean id="sqlMapClient_mysql" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:mybatis/sql-map-config.xml" />
+		<property name="mapperLocations" value="classpath:mybatis/sqlmaps/*.xml" />
+		<property name="dataSource" ref="dataSource_mysql" />
+	</bean>
+	<bean id="mysqlCommonDao" class="kr.co.etribe.framework.db.SqlMapCommonDao">
+		<property name="sqlSessionFactory" ref="sqlMapClient_mysql"/>
+	</bean>
+	 -->
+		
+
+	<!-- ############### Bean 설정값들을 선언하는 곳 ############## -->
+	<!-- DB 설정
+	<bean id="databaseHandler" class="kr.co.etribe.framework.db.DatabaseHandler" autowire="byName" />
+	 -->
+	<!-- 파일 업로드 설정 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="30720000" />
+	</bean>
+	<!-- 공통 서비스 영역(SMS/Mail 발송) -->
+	<bean id="commonService" 			class="pporan.maven.project.serviceImpl.CommonServiceImpl"/>
+	<!-- ############### //Bean 설정값들을 선언하는 곳 ############## -->
+	
+</beans>	
