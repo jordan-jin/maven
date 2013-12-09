@@ -10,11 +10,18 @@
 	
 	<name>spring_data_rest</name>
 	<url>http://maven.apache.org</url>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>3.2.4.RELEASE</spring.version> 
 	</properties>
+	
+	<repositories>
+	    <repository>
+			<id>mesir-repo</id>
+			<url>http://mesir.googlecode.com/svn/trunk/mavenrepo</url>
+		</repository>
+	</repositories>
 	
 	<dependencies>
 		<dependency>
@@ -44,10 +51,10 @@
 		</dependency>
 		
 		<!-- Oracle -->
-		<dependency>
-	        <groupId>com.oracle</groupId>
-	        <artifactId>ojdbc14</artifactId>
-	        <version>10.2.0.4.0</version>
+	    <dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc14</artifactId>
+			<version>10.2.0.4.0</version>
 		</dependency>
 		
 		<!-- Mysql -->
