@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-web>
+	<context-root>/repair</context-root>
+	
+	<replication-config>
+		<replication-trigger>SET</replication-trigger>
+		<use-jk>true</use-jk>
+	</replication-config>
+</jboss-web>

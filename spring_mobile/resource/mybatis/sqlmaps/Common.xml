@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<!--  -->
+<mapper namespace="Common">
+		
+	<select id="imageFileInfo" parameterType="EData" resultType="EData">
+		SELECT	A.SEQ
+				,A.VENDOR_ID
+				,B.CATE_NAME AS VENDOR_NAME
+				,B.DESCRIPTION AS VENDOR_CODE
+				,A.HARDWAREVER_ID
+				,C.CATE_NAME AS HARDWAREVER_NAME
+				,C.DESCRIPTION AS HARDWAREVER_CODE
+				,A.SOFTWAREVER_ID
+				,A.FIRMWARE_NAME
+				,A.CATE_ID
+				,D.CATE_NAME
+				,A.DESCRIPTION
+				,A.USE_YN
+				,A.FTP_COMPLETE_KEY
+				,A.FILE_PATH
+				,A.FILE_SAVE_NAME
+				,A.FILE_VIEW_NAME
+				,A.FILE_SIZE
+				,A.TOI
+				,A.CONTENT_TYPE
+				,A.MAX_SOURCE_BLOCK_LENGTH
+				,A.ENCODING_SYMBOL_LENGTH
+				,A.INSERT_ID
+				,A.INSERT_NAME
+				,A.INSERT_DATE
+				,A.UPDATE_ID
+				,A.UPDATE_NAME
+				,A.UPDATE_DATE
+				,CONVERT(NVARCHAR,GETDATE(),120) AS NOW_TIME
+				,(
+					SELECT	COUNT(*)
+					FROM	SCHEDULE_MASTER E
+					WHERE	E.PROGRAM_STEP1 = A.VENDOR_ID
+					AND		E.PROGRAM_STEP2 = A.HARDWAREVER_ID
+					AND		E.PROGRAM_SEQ = A.SEQ
+					AND		E.PROGRAM_TYPE = 'F'
+					AND		(	E.START_DATE &gt; GETDATE()
+								OR	E.END_DATE &gt; GETDATE()
+							)
+					AND		E.USE_YN = 'Y'
+					) AS UP_DEL
+				,'F' AS TYPE
+		FROM	<include refid="Paging.firmwareTab"/> A
+				,<include refid="Paging.categoryTab"/> B
+				,<include refid="Paging.categoryTab"/> C
+				,<include refid="Paging.categoryTab"/> D
+		WHERE	A.SEQ = #{seq}
+		AND		A.VENDOR_ID = B.CATE_ID
+		AND		A.HARDWAREVER_ID = C.CATE_ID
+		AND		A.CATE_ID = D.CATE_ID
+	</select>
+	
+	
+	<select id="pushAppFileInfo" parameterType="EData" resultType="EData">
+		SELECT	A.SEQ
+				,A.ORGANIZATION_ID
+				,B.CATE_NAME AS ORGANIZATION_NAME
+				,B.DESCRIPTION AS ORGANIZATION_CODE
+				,A.APPLICATION_ID
+				,C.CATE_NAME AS APPLICATION_NAME
+				,C.DESCRIPTION AS APPLICATION_CODE
+				,A.APPLICATION_VER
+				,A.SOFTWARE_NAME
+				,A.CATE_ID
+				,D.CATE_NAME
+				,A.SUB_CATE_ID
+				,A.DESCRIPTION
+				,A.USE_YN
+				,A.FTP_COMPLETE_KEY
+				,A.FILE_PATH
+				,A.FILE_SAVE_NAME
+				,A.FILE_VIEW_NAME
+				,A.FILE_SIZE
+				,A.VENDOR_ID
+				,A.HARDWARE_ID
+				,A.TOI
+				,A.CONTENT_TYPE
+				,A.MAX_SOURCE_BLOCK_LENGTH
+				,A.ENCODING_SYMBOL_LENGTH
+				,A.INSERT_ID
+				,A.INSERT_NAME
+				,A.INSERT_DATE
+				,A.UPDATE_ID
+				,A.UPDATE_NAME
+				,A.UPDATE_DATE
+				,CONVERT(NVARCHAR,GETDATE(),120) AS NOW_TIME
+				,(
+					SELECT	COUNT(*)
+					FROM	SCHEDULE_MASTER E
+					WHERE	E.PROGRAM_STEP1 = A.ORGANIZATION_ID
+					AND		E.PROGRAM_STEP2 = A.APPLICATION_ID
+					AND		E.PROGRAM_SEQ = A.SEQ
+					AND		E.PROGRAM_TYPE = 'S'
+					AND		(	E.START_DATE &gt; GETDATE()
+								OR	E.END_DATE &gt; GETDATE()
+							)
+					AND		E.USE_YN = 'Y'
+					) AS UP_DEL
+				,'S' AS TYPE
+		FROM	<include refid="Paging.softwareTab"/> A
+				,<include refid="Paging.categoryTab"/> B
+				,<include refid="Paging.categoryTab"/> C
+				,<include refid="Paging.categoryTab"/> D
+		WHERE	A.SEQ = #{seq}
+		AND		A.ORGANIZATION_ID = B.CATE_ID
+		AND		A.APPLICATION_ID = C.CATE_ID
+		AND		A.CATE_ID = D.CATE_ID
+	</select>
+	
+	<select id="getFileServerInfo" parameterType="EData" resultType="EData">
+		SELECT	A.SEQ
+				,A.SERVER_IP
+				,A.SERVER_PORT
+				,A.SERVER_ID
+				,A.SERVER_PASSWD
+				,A.SERVER_DIRECTORY
+		FROM	<include refid="Paging.fileSubTab"/>	A
+		WHERE	A.SEQ = #{file_seq}
+		AND		A.USE_YN = 'Y'
+	</select>
+	
+	<update id="updateFirmware" parameterType="EData">
+		UPDATE	<include refid="Paging.firmwareTab"/>
+		SET		T_SOURCESYMBOLCOUNT = #{T_SourceSymbolCount}
+				,N_SOURCEBLOCKCOUNT = #{N_SourceBlockCount}
+				,A_LARGESOURCEBLOCKLENGTH =  #{A_LargeSourceBlockLength}
+				,A_SMALLSOURCEBLOCKLENGTH = #{A_SmallSourceBlockLength}
+				,I_LARGESOURCEBLOCKCOUNT = #{I_LargeSourceBlockCount}
+				,S_SMALLSOURCEBLOCKCOUNT = #{s_SmallSourceBlockCount}
+		WHERE	SEQ = #{SEQ}		
+	</update>
+	<update id="updateSoftware" parameterType="EData">
+		UPDATE	<include refid="Paging.softwareTab"/>
+		SET		T_SOURCESYMBOLCOUNT = #{T_SourceSymbolCount}
+				,N_SOURCEBLOCKCOUNT = #{N_SourceBlockCount}
+				,A_LARGESOURCEBLOCKLENGTH =  #{A_LargeSourceBlockLength}
+				,A_SMALLSOURCEBLOCKLENGTH = #{A_SmallSourceBlockLength}
+				,I_LARGESOURCEBLOCKCOUNT = #{I_LargeSourceBlockCount}
+				,S_SMALLSOURCEBLOCKCOUNT = #{s_SmallSourceBlockCount}
+		WHERE	SEQ = #{SEQ}		
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<select id="getFileInfo" parameterType="EData" resultType="EData">
+		SELECT	A.T_SOURCESYMBOLCOUNT
+				,A.N_SOURCEBLOCKCOUNT
+				,A.A_LARGESOURCEBLOCKLENGTH
+				,A.A_SMALLSOURCEBLOCKLENGTH
+				,A.I_LARGESOURCEBLOCKCOUNT
+				,A.S_SMALLSOURCEBLOCKCOUNT
+		FROM	<include refid="Paging.firmwareTab"/> A
+		WHERE	A.FILE_PATH = #{FILE_PATH}
+		AND		A.FILE_VIEW_NAME = #{FILE_VIEW_NAME}
+		UNION ALL
+		SELECT	B.T_SOURCESYMBOLCOUNT
+				,B.N_SOURCEBLOCKCOUNT
+				,B.A_LARGESOURCEBLOCKLENGTH
+				,B.A_SMALLSOURCEBLOCKLENGTH
+				,B.I_LARGESOURCEBLOCKCOUNT
+				,B.S_SMALLSOURCEBLOCKCOUNT
+		FROM	<include refid="Paging.softwareTab"/> B
+		WHERE	B.FILE_PATH = #{FILE_PATH}
+		AND		B.FILE_VIEW_NAME = #{FILE_VIEW_NAME}
+	</select>
+</mapper>

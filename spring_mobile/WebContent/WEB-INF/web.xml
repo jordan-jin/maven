@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xmlns="http://java.sun.com/xml/ns/javaee" 
+			xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+			xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+			id="WebApp_ID" version="2.5">
+	<display-name>Spring Web MVC Rest Demo Application</display-name>
+
+	<context-param>
+		<description>Set Spring configuration file location</description>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring/applicationContext.xml</param-value>
+	</context-param>
+	
+	<listener>
+    	<description>Spring Initializer</description>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>		
+	<servlet>
+		<description>Spring MVC Dispatcher</description>
+		<servlet-name>spring</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>spring</servlet-name>
+	    <url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+	    <servlet-name>default</servlet-name>
+	    <url-pattern>*.jpg</url-pattern>
+	    <url-pattern>*.css</url-pattern>
+	    <url-pattern>*.gif</url-pattern>
+	    <url-pattern>*.js</url-pattern>
+	</servlet-mapping>
+	<!-- 
+	<servlet>
+		<description></description>
+		<display-name>PPORAN RepairScriptServlet</display-name>
+		<servlet-name>RepairScriptServlet</servlet-name>
+		<servlet-class>com.aircode.project.controller.RepairScriptServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>RepairScriptServlet</servlet-name>
+		<url-pattern>/repair_script.req</url-pattern>
+	</servlet-mapping>
+	
+	 -->
+	
+	<filter>
+		<description>Encoding Filter</description>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<description>Set Encoding Here.</description>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<description>Checks force setting encoding</description>
+			<param-name>forceEncoding</param-name>
+			<param-value>false</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<jsp-config>
+		<taglib>
+			<taglib-uri>http://java.sun.com/jsp/jstl/core</taglib-uri>
+			<taglib-location>tld/c.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>http://java.sun.com/jsp/jstl/fmt</taglib-uri>
+			<taglib-location>tld/fmt.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>http://java.sun.com/jstl/xml</taglib-uri>
+			<taglib-location>tld/x.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>http://java.sun.com/jstl/sql</taglib-uri>
+			<taglib-location>tld/sql.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>http://java.sun.com/jsp/jstl/functions</taglib-uri>
+			<taglib-location>tld/fn.tld</taglib-location>
+		</taglib>			
+	</jsp-config>
+	
+	<distributable/>
+
+</web-app>

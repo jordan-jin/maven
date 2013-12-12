@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	
+	<!-- 카테고리 코드 -->
+	<module id="code">
+		<property id="isFirmCd">1</property>
+		<property id="isSoftCd">2</property>
+		<property id="isVendorCd">3</property>
+		<property id="isOrganiCd">4</property>
+		<property id="isSocketCd">5</property>
+	</module>
+	
+	<!-- Suffix 뒷자리 값 -->
+	<module id="suffix">
+		<property id="isLastSuffix">0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f</property>
+	</module>
+	
+	<module id="delimiter">
+		<property id="row">^</property>
+		<property id="column">//</property>		
+	</module>
+	<module id="pageRowSize">
+		<property id="isAdminRow">10</property>
+		<property id="isAdminBlock">10</property>
+	</module>
+	
+	
+</configuration>
