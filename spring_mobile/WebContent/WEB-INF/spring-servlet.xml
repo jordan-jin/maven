@@ -7,12 +7,39 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
     
-       
-	<!-- Spring MVC에서 Annotation 으로 Parameter 연결 -->
+	<!-- Spring 3.1 이상에서 HandlerMethodArgumentResolver를 사용하도록 변경되었음
+		일반적으로는
+		<mvc:annotation-driven/>
+		또는
+		<mvc:annotation-driven>
+		    <mvc:argument-resolvers>
+		        <bean class="??????????????????"/> 일반 Bean 주입 
+		    </mvc:argument-resolvers>
+		</mvc:annotation-driven>
+		
+		그러나 Map을 resolver에 사용할 경우 문제가 발생하였다.
+		RequestMappingHandlerMapping에서 Map으로 값을 줄경우 match가 안되는 현상이 발생한 것이였다.
+		그래서 RequestMappingHandlerMapping에서 ArgumentResolvers를 확인하여
+		MapMethodProcessor의 위치를 EDataArgumentResolver보다 나중에 불러오는것으로 선언하여 해결이 된 상황이다.
+		이럴때는 <mvc:annotation-driven> 선언을 사용할수 없어
+		직접 bean에 설정해줘야 한다.
+	 -->    
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+    <bean class="pporan.maven.framework.spring.CustomRequestMappingHandlerAdapter">
+    	<property name="customArgumentResolvers" ref="eDataArgumentResolver"></property>
+    </bean>
+    
+	
+	<!-- Request Parameter 값들을 EData 객체로 bind하는 resolver -->
+	<!-- CustomRequestMappingHandlerAdapter Property 값에 세팅한다. -->
+    <bean id="eDataArgumentResolver" class="pporan.maven.framework.spring.EDataArgumentResolver"/>
+	 
+	<!-- Spring3.0 Version : MVC에서 Annotation 으로 Parameter 연결
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="customArgumentResolver" ref="eDataArgumentResolver"/>
+	 -->
 		
-		<!-- Controller @Responsebody 어노테이션 사용시 한글 깨짐 방지 -->
+		<!-- Controller @Responsebody 어노테이션 사용시 한글 깨짐 방지 
 		<property name="messageConverters">
 			<list>
 				<bean class="org.springframework.http.converter.StringHttpMessageConverter">
@@ -25,26 +52,25 @@
 			</list>
 		</property>		
 	</bean>
+		-->
 	
-	<!-- Request Parameter 값들을 EData 객체로 bind하는 resolver -->
-	<!-- AnnotationMethodHandlerAdapter Property 값에 세팅한다. -->
-	<bean id="eDataArgumentResolver" class="pporan.maven.framework.spring.EDataArgumentResolver"/>
-	<!-- 
-  	<bean class="org.springframework.mobile.device.DeviceWebArgumentResolver" />
-	 -->
+	
+	<!-- Controller 를 찾을 Base Package 명 -->
+	<context:component-scan base-package="com.pporan.project.controller" />
+
+	<!-- component-scan 이용시 annotation-config 제외 가능 -->
+	<context:annotation-config />
+       
 	
 	<mvc:interceptors>
 	    <bean class="org.springframework.mobile.device.DeviceResolverHandlerInterceptor" />
 	</mvc:interceptors>
 	
-	<!-- Annotation 을 사용하지 않는 별개 Controller 처리 -->
+	<!-- Annotation 을 사용하지 않는 별개 Controller 처리
 	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+	 -->
 	
-	<!-- Controller 를 찾을 Base Package 명 -->
-	<context:component-scan base-package="com.pporan.project.controller" />
-
-	<!-- component-scan 이용시 annotation-config 제외 가능  -->
-	<context:annotation-config />
+	
 	 
 	<!-- JSP 를 찾을 위치. -->
 	<!--

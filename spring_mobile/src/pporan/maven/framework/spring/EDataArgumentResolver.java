@@ -10,20 +10,23 @@ import org.springframework.core.MethodParameter;
 import org.springframework.mobile.device.Device;
 import org.springframework.mobile.device.DeviceUtils;
 import org.springframework.web.bind.support.WebArgumentResolver;
+import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.method.support.ModelAndViewContainer;
 
 import pporan.maven.framework.data.EData;
 import pporan.maven.framework.util.StringUtil;
 
-public class EDataArgumentResolver implements WebArgumentResolver  {
+public class EDataArgumentResolver implements HandlerMethodArgumentResolver  {
 	
 	private static Logger logger = Logger.getLogger(EDataArgumentResolver.class);
 	
 	@Override
-	public Object resolveArgument(MethodParameter methodParameter, NativeWebRequest nativeWebRequest)
-			throws Exception {
-		
+	public Object resolveArgument(MethodParameter methodParameter, ModelAndViewContainer mavContainer, NativeWebRequest nativeWebRequest,
+			WebDataBinderFactory binderFactory) throws Exception {
+			
 		HttpServletRequest request = (HttpServletRequest)nativeWebRequest.getNativeRequest();
 		
 		Class<?> parameterType = methodParameter.getParameterType();
@@ -86,15 +89,16 @@ public class EDataArgumentResolver implements WebArgumentResolver  {
 				logger.debug("@@>> EDataArgumentResolver EData requestMapping info : " + eData.toString());
 			}
 			
+			
 			return eData;
 		}
 		
-		return UNRESOLVED;
+		return WebArgumentResolver.UNRESOLVED;
 	}
-	
-//	@Override
-//	public Device resolveDevice(HttpServletRequest arg0){
-//		return null;
-//	}
+
+	@Override
+	public boolean supportsParameter(MethodParameter methodParameter) {
+//		return true;
+		return methodParameter.getParameterType().equals(EData.class);	}
 
 }

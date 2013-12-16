@@ -2,17 +2,17 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
-				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
 	<context:annotation-config />
 
-	<tx:annotation-driven transaction-manager="txManager_etribe"/>
+	<tx:annotation-driven transaction-manager="txManager_pporan"/>
 
 	<!-- 외부 설정 파일 위치 -->
 	<context:property-placeholder location="classpath:conf/db.properties" />
-	<bean id="dataSource_etribe" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+	<bean id="dataSource_pporan" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="user" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
 		<property name="driverClass" value="${jdbc.driverClassName}" />
@@ -33,16 +33,16 @@
 		<property name="testConnectionOnCheckin" value="true"/>
    		<property name="testConnectionOnCheckout" value="true" />
 	</bean>
-	<bean id="txManager_etribe" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource_etribe"></property>
+	<bean id="txManager_pporan" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource_pporan"></property>
 	</bean>
-	<bean id="sqlMapClient_etribe" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlMapClient_pporan" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="configLocation" value="classpath:mybatis/sql-map-config.xml" />
 		<property name="mapperLocations" value="classpath:mybatis/sqlmaps/*.xml" />
-		<property name="dataSource" ref="dataSource_etribe" />
+		<property name="dataSource" ref="dataSource_pporan" />
 	</bean>
 	<bean id="mssqlCommonDao" class="pporan.maven.framework.db.SqlMapCommonDao">
-		<property name="sqlSessionFactory" ref="sqlMapClient_etribe"/>
+		<property name="sqlSessionFactory" ref="sqlMapClient_pporan"/>
 	</bean>
 		
 
