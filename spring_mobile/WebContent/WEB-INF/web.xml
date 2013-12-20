@@ -9,7 +9,8 @@
 	<context-param>
 		<description>Set Spring configuration file location</description>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring/applicationContext.xml</param-value>
+		<param-value>classpath:spring/*.xml</param-value>
+		
 	</context-param>
 	
 	<listener>
@@ -36,20 +37,6 @@
 	    <url-pattern>*.gif</url-pattern>
 	    <url-pattern>*.js</url-pattern>
 	</servlet-mapping>
-	<!-- 
-	<servlet>
-		<description></description>
-		<display-name>PPORAN RepairScriptServlet</display-name>
-		<servlet-name>RepairScriptServlet</servlet-name>
-		<servlet-class>com.aircode.project.controller.RepairScriptServlet</servlet-class>
-	</servlet>
-	
-	<servlet-mapping>
-		<servlet-name>RepairScriptServlet</servlet-name>
-		<url-pattern>/repair_script.req</url-pattern>
-	</servlet-mapping>
-	
-	 -->
 	
 	<filter>
 		<description>Encoding Filter</description>

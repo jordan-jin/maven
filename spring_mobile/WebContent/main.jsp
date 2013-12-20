@@ -7,10 +7,32 @@
 	<title>Normal</title>
 	<meta name="keywords" content="" />
     <meta name="description" content="" />
+	<script type="text/javascript" src="/inc/js/jquery-1.8.1.min.js"></script>
 </head>
 <!-- html body -->
+<script type="text/javascript">
+	function goJsonTest() {
+		$.ajax({
+			url : "/json/test.json"
+			,data:{'cate_id':'cate_id'
+				,'cate_name':'cate_name'
+				,'description':'description'
+				,'use_yn':'use_yn'}
+			,contentType: "application/json;charset=UTF-8"
+			,success : function(){
+				alert('xxxxxxxxxxx');
+			}
+			,error : function(){
+				alert('error');
+			}
+		});
+	}
+</script>
 <body>
 	Normal Page
+	
+	
+	<input type="button" value="json" onclick="goJsonTest();"/>
 </body>
 <!-- //html body -->
 </html>

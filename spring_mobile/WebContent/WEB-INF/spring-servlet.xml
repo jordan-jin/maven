@@ -34,6 +34,7 @@
 	<!-- CustomRequestMappingHandlerAdapter Property 값에 세팅한다. -->
     <bean id="eDataArgumentResolver" class="pporan.maven.framework.spring.EDataArgumentResolver"/>
 	 
+	 
 	<!-- Spring3.0 Version : MVC에서 Annotation 으로 Parameter 연결
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="customArgumentResolver" ref="eDataArgumentResolver"/>
@@ -69,7 +70,14 @@
 	<!-- Annotation 을 사용하지 않는 별개 Controller 처리
 	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
 	 -->
-	
+	<!-- view 등록 -->
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" >
+		<property name="order" value="0" />
+	</bean>
+	<mvc:annotation-driven /> 
+	<bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView">
+		<property name="contentType" value="application/json;charset=UTF-8" />
+	</bean>
 	
 	 
 	<!-- JSP 를 찾을 위치. -->

@@ -1,15 +1,12 @@
 package com.pporan.project.controller;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
+
+import net.sf.json.JSONObject;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -50,6 +47,24 @@ public class SampleController {
 		
 		return reStr;
 	}
+	
+	@RequestMapping("/json/test.json")
+	public JSONObject getShopInJSON(EData eMap) {
+//		ModelAndView mav = new ModelAndView();
+//		eMap.put("key1", "key1");
+//		eMap.put("key2", "key2");
+//		eMap.put("key3", "key3");
+//		eMap.put("key4", "key4");
+//		eMap.put("value1", "value1");
+//		eMap.put("value2", "value2");
+//		eMap.put("value3", "value3");
+//		eMap.put("value4", "value4");
+//		mav.addObject("data", JSONObject.fromObject(eMap));
+		return JSONObject.fromObject(eMap);
+ 
+	}
+	
+	
 //	@RequestMapping("/main")
 //	public ModelAndView _main(EData eMap){
 //		ModelAndView mav = new ModelAndView();
