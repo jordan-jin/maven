@@ -3,6 +3,11 @@
 <!--  -->
 <mapper namespace="Common">
 		
+	<select id="testQuery" parameterType="EData" resultType="EData">
+		SELECT	*
+		FROM	ADMIN
+	</select>
+	
 	<select id="imageFileInfo" parameterType="EData" resultType="EData">
 		SELECT	A.SEQ
 				,A.VENDOR_ID

@@ -7,9 +7,17 @@
 	<display-name>Spring Web MVC Rest Demo Application</display-name>
 
 	<context-param>
+		<param-name>contextClass</param-name>
+		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+	</context-param>
+	
+	<context-param>
 		<description>Set Spring configuration file location</description>
 		<param-name>contextConfigLocation</param-name>
+		<!-- 
 		<param-value>classpath:spring/*.xml</param-value>
+		 -->
+		<param-value>classpath:configration.SpringSetting</param-value>
 		
 	</context-param>
 	

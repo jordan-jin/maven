@@ -5,17 +5,32 @@ import javax.servlet.http.HttpServletRequest;
 import net.sf.json.JSONObject;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import configration.SpringSetting;
+
 import pporan.maven.framework.data.EData;
+import pporan.maven.framework.db.DatabaseHandler;
 
 @Controller
 public class SampleController {
 
 	private Logger logger = Logger.getLogger(SampleController.class);
+	
+	DatabaseHandler databaseHandler;
+	
+	public SampleController(){
+		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringSetting.class);
+		databaseHandler = ctx.getBean(DatabaseHandler.class);
+	}
+	
+	
 	
 	@RequestMapping("/main")
 	public ModelAndView _main(EData eMap){
@@ -23,6 +38,8 @@ public class SampleController {
 		ModelAndView mav = new ModelAndView();
 //		logger.debug("@@@@@@@@@@@ terminal = "+pathVariables.get("terminal"));
 		logger.debug("@@@@@@@@@@@ terminal = "+eMap.get("terminal"));
+		databaseHandler.selectItem(DatabaseHandler.DB_MSSQL, "Common.testQuery", eMap);
+		
 		return mav;
 	}
 	
